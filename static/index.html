@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Scanner passivo para avaliação autorizada da superfície HTTP e TLS.">
+    <title>Safe Surface Scanner</title>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <div class="eyebrow"><span class="pulse"></span> authorized surface assessment</div>
+        <h1>Veja o que seu endereço web está revelando.</h1>
+        <p class="lede">Uma leitura rápida e segura de headers, cookies, TLS e conteúdo público — feita para orientar hardening, sem exploração invasiva.</p>
+        <form id="scan-form" class="scan-form">
+          <label for="url">URL alvo</label>
+          <div class="input-row">
+            <input id="url" name="url" type="url" placeholder="https://seu-dominio.com ou http://localhost:8080" autocomplete="url" required>
+            <button id="scan-button" type="submit"><span>Iniciar scan</span><span class="arrow">↗</span></button>
+          </div>
+          <p class="hint">Destinos públicos HTTP/HTTPS ou localhost com porta. Use apenas em ativos sob sua autorização.</p>
+        </form>
+      </section>
+
+      <section id="status" class="status" aria-live="polite" hidden></section>
+
+      <section id="results" hidden>
+        <div class="result-head">
+          <div>
+            <div class="eyebrow">relatório concluído</div>
+            <h2 id="target-label"></h2>
+          </div>
+          <button id="new-scan" class="ghost-button" type="button">Novo scan</button>
+        </div>
+        <div id="metric-grid" class="metric-grid"></div>
+        <div class="content-grid">
+          <div>
+            <div class="section-title"><span>Achados</span><span id="finding-filter-label" class="muted"></span></div>
+            <div id="findings" class="findings"></div>
+          </div>
+          <aside class="side-card">
+            <div class="section-title">Observações</div>
+            <ul id="observations" class="observations"></ul>
+            <div id="errors-wrap" hidden>
+              <div class="section-title error-title">Avisos do scan</div>
+              <ul id="errors" class="observations"></ul>
+            </div>
+          </aside>
+        </div>
+        <p id="scope-note" class="scope-note"></p>
+      </section>
+    </main>
+    <script src="/app.js" defer></script>
+  </body>
+</html>
